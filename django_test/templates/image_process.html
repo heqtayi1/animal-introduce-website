@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>image process</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h1>image processing!</h1>
+    <img id="image-display" src="" width="200" height="100">
+    <button onclick="loadImage()">加载图像</button>
+
+    <img id="image-display2" src="" width="200" height="100">
+    <button onclick="grayscaleImage()" >灰度化</button>
+</body>
+
+<script>
+    function loadImage() {
+        $.ajax({
+            url: 'load_image',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $('#image-display').attr('src', data.image_url);
+            },
+            error: function (error) {
+                console.log('Error loading image:', error);
+            }
+        });
+    }
+
+    function grayscaleImage() {
+        var imageElement = document.getElementById('image-display');
+        var src_path = imageElement.src
+        var myData = {
+            key1: src_path,
+        };
+        $.ajax({
+            url: 'grayscale_image',
+            type: 'GET',
+            data: myData,
+            dataType: 'json',
+            success: function (data) {
+                $('#image-display2').attr('src', data.grayscale_image_url);
+            },
+            error: function (error) {
+                console.log('Error processing grayscale image:', error);
+            }
+        });
+    }
+</script>
+</html>

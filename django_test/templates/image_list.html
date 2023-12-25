@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iamge list page</title>
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1>image list page</h1>
+
+    <form method="post" action="search_image">
+        <input type="text" name="search_name" value="{{search_content}}" placeholder="input the search information! " class="form-control">
+        <button type="submit">搜索</button>
+    </form>
+
+
+    <ul>
+        {% for image_path in image_arr %}
+        <li>
+            <img src="{% static image_path %}" alt="Image" width="200" height="100">
+            <p>{{image_path}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+
+</body>
+</html>

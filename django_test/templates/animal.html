@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生物多样性--animal</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;        }
+        .nav{
+            height:54px;
+            width:100%;
+            background-color:rgba(217,217,217,57%)
+            position: relative;
+            }
+        a{
+            
+        }
+        #body svg{
+            position: absolute;
+            top:30%;
+            left: 5%;
+        }
+        .tick:nth-child(5){
+            stroke-dasharray:220px;
+            stroke-dashoffset:220px;
+            animation: 3s tick5 ease-in-out forwards;
+        }
+        @keyframes tick5{
+            from{
+                stroke-dashoffset:220px;
+            }
+            to{
+                stroke-dashoffset:0px;
+            }
+        }
+        .tick:nth-child(1){
+            stroke-dasharray:250px;
+            stroke-dashoffset:250px;
+            animation: 3s tick1 ease-in-out forwards;
+        }
+        @keyframes tick1{
+            from{
+                stroke-dashoffset:250px;
+            }
+            to{
+                stroke-dashoffset:0px;
+            }
+        }
+        .tick:nth-child(2){
+            stroke-dasharray:300px;
+            stroke-dashoffset:300px;
+            animation: 3s tick2 ease-in-out forwards;
+        }
+        @keyframes tick2{
+            from{
+                stroke-dashoffset:300px;
+            }
+            to{
+                stroke-dashoffset:0px;
+            }
+        }
+        .tick:nth-child(4){
+            stroke-dasharray:250px;
+            stroke-dashoffset:250px;
+            animation: 3s tick4 ease-in-out forwards;
+        }
+        @keyframes tick4{
+            from{
+                stroke-dashoffset:250px;
+            }
+            to{
+                stroke-dashoffset:0px;
+            }
+        }
+        .tick:nth-child(3){
+            stroke-dasharray:500px;
+            stroke-dashoffset:500px;
+            animation: 3s tick3 ease-in-out forwards;
+        }
+        @keyframes tick3{
+            from{
+                stroke-dashoffset:500px;
+            }
+            to{
+                stroke-dashoffset:0px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/imageList">图像</a>
+        <a href="/videoList">视频</a>
+        <a href="/upload">上传</a>
+        <a href="/imageProcessing">图像处理</a>
+        <a href="/imageRecognition">图像识别</a>
+        <a href="/chartDisplay">图表展示</a>
+    </div>
+    <div id="body">
+        <svg width="1128" height="453" viewBox="0 0 1128 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class=tick d="M500 439.5L407 192.5" stroke="#98D696" stroke-width="4" />
+            <path class=tick d="M408.5 195.5L101.5 233.5" stroke="#BB1919" stroke-width="4"/>
+            <path class=tick d="M503 438L933 189.5" stroke="#EDD869" stroke-width="4"/>
+            <path class=tick d="M1117 274.5L929.5 192.5" stroke="#CF5EBD" stroke-width="4"/>
+            <path class=tick d="M14 12.5L101 229" stroke="#5578F8" stroke-width="4"/>
+            <ellipse cx="101.5" cy="229" rx="13.5" ry="13" fill="#546C28"/>
+            <ellipse cx="406.5" cy="196" rx="13.5" ry="13" fill="#546C28"/>
+            <ellipse cx="499.5" cy="440" rx="13.5" ry="13" fill="#546C28"/>
+            <ellipse cx="931.5" cy="191" rx="13.5" ry="13" fill="#546C28"/>
+            <ellipse cx="1114.5" cy="271" rx="13.5" ry="13" fill="#546C28"/>
+            <ellipse cx="13.5" cy="13" rx="13.5" ry="13" fill="#546C28"/>
+            {% comment %} <image href="https://example.com/path-to-image1.jpg" x="88" y="216" width="27" height="26"/>
+            <image href="https://example.com/path-to-image2.jpg" x="381" y="183" width="27" height="26"/>
+            <image href="https://example.com/path-to-image3.jpg" x="474" y="427" width="27" height="26"/>
+            <image href="https://example.com/path-to-image4.jpg" x="906" y="178" width="27" height="26"/>
+            <image href="https://example.com/path-to-image5.jpg" x="1089" y="258" width="27" height="26"/>
+            <image href="https://example.com/path-to-image6.jpg" x="0" y="0" width="27" height="26"/>  {% endcomment %}
+            </svg>
+            
+    </div>
+</body>
