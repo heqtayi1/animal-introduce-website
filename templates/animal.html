@@ -10,7 +10,9 @@
             padding:0;        }
         body{
             position:relative;
-        }
+            
+
+        } 
         .nav{
             height:54px;
             width:100%;
@@ -44,7 +46,7 @@
         {% comment %} 画线动画 {% endcomment %}
         #body svg{
             position: absolute;
-            top:20%;
+            top:100px;
             left: 5%;
         }
         .tick:nth-child(5){
@@ -119,10 +121,51 @@
             height:94px;
         }
         .card{
-            width:268px;
-            height:369px;
-            background-color:rgba(217,217,217,57%);
+            display:none;
+            margin:40px 33% 40px 33%;
+            width:485px;
+            height:602px;
+            {% comment %} background-color:rgb(245,245,240); {% endcomment %}
+            background-image:url("{% static 'images/paper.webp' %}");
+            box-shadow: 15px 15px 5px rgba(219,221,218,0.5);
+            position:relative;
         }
+        .card::hover{
+            display:block;
+        }
+        .card .photo{
+            width:182px;
+            height:235px;
+            background:black;
+            margin:30px;
+            position:absolute;
+            top:10px;
+
+
+        }
+        .card .text{
+            margin:30px;
+            position:absolute;
+            left:202px;
+        }
+        .card .audio{
+            background-color:black;
+            width:425px;
+            height:40px;
+            margin:30px;
+            position:absolute;
+            bottom:176px;
+            
+        }
+        .card .audio_graph{
+            background-color:black;
+            width:425px;
+            height:156px;
+            margin:30px;
+            position:absolute;
+            bottom:10px;
+        }
+
     </style>
 </head>
 <body>
@@ -156,15 +199,15 @@
             <image href="{% static 'images/sheep.png' %}" x="15" y="-30" /> 
             </svg>
             <div class="card">
-                <div class="photo">
-                </div>
                 <div class="text">
-                    <h>名字</h>
-                    <h>介绍</h>
+                    <p>名字</p>
+                    <p>介绍</p>
+                </div>
+                <div class="photo">
                 </div>
                 <div class="audio">
                 </div>
-                <div class="audio-graph">
+                <div class="audio_graph">
                 </div>
             </div>
             <div class="button">继续探索</div>
