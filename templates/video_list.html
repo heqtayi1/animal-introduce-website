@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>video list page</title>
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1>video list page</h1>
+    <ul>
+        {% for video in video_arr %}
+            <li>
+                <video width="640" height="480" controls>
+                    <source src="{% static video %}" type="video/mp4">
+                </video>
+                <p>{{ video }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

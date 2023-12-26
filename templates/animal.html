@@ -8,19 +8,43 @@
         *{
             margin:0;
             padding:0;        }
+        body{
+            position:relative;
+        }
         .nav{
             height:54px;
             width:100%;
-            background-color:rgba(217,217,217,57%)
+            background-color:rgba(217,217,217,57%);
             position: relative;
             }
         a{
-            
+            float:right;
         }
+        .nav span{
+            font-size: 60px;
+        }
+        .button{
+            width:156px;
+            height:38px;
+            margin:40px;
+            background-color:rgb(243,246,226);
+            border-radius: 25px;
+            line-height: 38px;
+            text-align: center;
+            font-size:16px;
+            color:rgb(138,147,82);
+            position:absolute;
+            right:10px;
+            bottom:10px;
+            }
+        .button:hover{
+            color:rgb(243,246,226);
+            background-color:rgb(138,147,82);
+         }
         {% comment %} 画线动画 {% endcomment %}
         #body svg{
             position: absolute;
-            top:30%;
+            top:20%;
             left: 5%;
         }
         .tick:nth-child(5){
@@ -90,11 +114,20 @@
             }
         }
         {% comment %} end {% endcomment %}
-        
+        #body svg img{
+            width:82px;
+            height:94px;
+        }
+        .card{
+            width:268px;
+            height:369px;
+            background-color:rgba(217,217,217,57%);
+        }
     </style>
 </head>
 <body>
     <div class="nav">
+        <span>各种各样的动物！</span>
         <a href="/imageList">图像</a>
         <a href="/videoList">视频</a>
         <a href="/upload">上传</a>
@@ -103,7 +136,7 @@
         <a href="/chartDisplay">图表展示</a>
     </div>
     <div id="body">
-        <svg width="1128" height="453" viewBox="0 0 1128 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="1128" height="500" viewBox="0 0 1128 453" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path class=tick d="M500 439.5L407 192.5" stroke="#98D696" stroke-width="4" />
             <path class=tick d="M408.5 195.5L101.5 233.5" stroke="#BB1919" stroke-width="4"/>
             <path class=tick d="M503 438L933 189.5" stroke="#EDD869" stroke-width="4"/>
@@ -115,13 +148,25 @@
             <ellipse cx="931.5" cy="191" rx="13.5" ry="13" fill="#546C28"/>
             <ellipse cx="1114.5" cy="271" rx="13.5" ry="13" fill="#546C28"/>
             <ellipse cx="13.5" cy="13" rx="13.5" ry="13" fill="#546C28"/>
-            <image href="{% static 'images/giraffe.png' %}" x="88" y="216" width="27" height="26"/>
-            <image href="https://example.com/path-to-image2.jpg" x="381" y="183" width="27" height="26"/>
-            <image href="https://example.com/path-to-image3.jpg" x="474" y="427" width="27" height="26"/>
-            <image href="https://example.com/path-to-image4.jpg" x="906" y="178" width="27" height="26"/>
-            <image href="https://example.com/path-to-image5.jpg" x="1089" y="258" width="27" height="26"/>
-            <image href="https://example.com/path-to-image6.jpg" x="0" y="0" width="27" height="26"/> 
+            <image href="{% static 'images/giraffe.png' %}" x="70" y="110" />
+            <image href="{% static 'images/cow.png' %}" x="320" y="200" />
+            <image href="{% static 'images/crow.png' %}" x="474" y="320" />
+            <image href="{% static 'images/penguin.png' %}" x="830" y="100" />
+            <image href="{% static 'images/rattlesnake.png' %}" x="1000" y="250" />
+            <image href="{% static 'images/sheep.png' %}" x="15" y="-30" /> 
             </svg>
-            
+            <div class="card">
+                <div class="photo">
+                </div>
+                <div class="text">
+                    <h>名字</h>
+                    <h>介绍</h>
+                </div>
+                <div class="audio">
+                </div>
+                <div class="audio-graph">
+                </div>
+            </div>
+            <div class="button">继续探索</div>
     </div>
 </body>

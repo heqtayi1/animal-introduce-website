@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+</head>
+<body>
+    <h2>Upload Image</h2>
+    <form action="upload_image" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">上传图像</button>
+
+        {% if upload_success %}
+            <p style="color: red;">{{ image_name }} 上传成功！并存放在static/images目录下</p>
+        {% endif %}
+    </form>
+
+    <h2>Upload video</h2>
+    <form action="upload_video" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="video" accept="video/*">
+        <button type="submit">上传视频</button>
+
+        {% if upload_success1 %}
+            <p style="color: red;">{{ video_name }} 上传成功！并存放在static/videos目录下。</p>
+        {% endif %}
+    </form>
+</body>
+</html>
