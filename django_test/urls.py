@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from homepage import views as homepage_views
 
+
 urlpatterns = [
     path('', homepage_views.homepage),   #默认登录界面
     path('imageList', homepage_views.image_list_page),
@@ -32,5 +33,6 @@ urlpatterns = [
     path('Recognize', homepage_views.Recognize),
     path('chartDisplay', homepage_views.chartDisplay),
     path('animal',homepage_views.animal_page),
+    #path('sheep-info',),
 ]
 

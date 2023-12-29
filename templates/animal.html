@@ -10,6 +10,7 @@
             padding:0;        }
         body{
             position:relative;
+            height:100%;
             
 
         } 
@@ -37,14 +38,14 @@
             color:rgb(138,147,82);
             position:absolute;
             right:10px;
-            bottom:10px;
+            top:600px;
             }
         .button:hover{
             color:rgb(243,246,226);
             background-color:rgb(138,147,82);
          }
         {% comment %} 画线动画 {% endcomment %}
-        #body svg{
+        #body #line{
             position: absolute;
             top:100px;
             left: 5%;
@@ -116,32 +117,41 @@
             }
         }
         {% comment %} end {% endcomment %}
-        #body svg img{
-            width:82px;
-            height:94px;
+        #body #line image{
+            width:90px;
+            height:auto;
+        }
+        #body #line image:hover{
+            width:100px;
+            height:auto;
         }
         .card{
+            border-radius: 10px;
             display:none;
             margin:40px 33% 40px 33%;
             width:485px;
             height:602px;
-            {% comment %} background-color:rgb(245,245,240); {% endcomment %}
-            background-image:url("{% static 'images/paper.webp' %}");
+            background-color:rgba(245,245,240,0.5);
+            {% comment %} background-image:url("{% static 'images/paper.webp' %}"); {% endcomment %}
+            border-style: ridge;
             box-shadow: 15px 15px 5px rgba(219,221,218,0.5);
             position:relative;
-        }
-        .card::hover{
-            display:block;
+            
         }
         .card .photo{
             width:182px;
             height:235px;
-            background:black;
+            {% comment %} background:black; {% endcomment %}
             margin:30px;
             position:absolute;
             top:10px;
 
 
+        }
+        .card .photo img{
+            width:182px;
+            height:235px;
+            object-fit:cover;
         }
         .card .text{
             margin:30px;
@@ -149,7 +159,7 @@
             left:202px;
         }
         .card .audio{
-            background-color:black;
+            background-color:rgba(1,1,1,0);
             width:425px;
             height:40px;
             margin:30px;
@@ -157,7 +167,20 @@
             bottom:176px;
             
         }
+        .card .audio button{
+            padding:11px;
+            width:100%;
+            background-color:rgb(243,246,226);
+            color:rgb(138,147,82);
+            border-radius: 20px;
+
+        }
+        .card .audio button:hover{
+            background-color:rgb(138,147,82);
+            color:rgb(243,246,226);
+        }   
         .card .audio_graph{
+            display=none;
             background-color:black;
             width:425px;
             height:156px;
@@ -165,7 +188,16 @@
             position:absolute;
             bottom:10px;
         }
-
+        .card .audio_graph img{
+            width:425px;
+            height:156px;
+            object-fit:cover;
+        }
+        .card svg{
+            position:absolute;
+            margin:10px;
+            right:0px;
+        }
     </style>
 </head>
 <body>
@@ -179,7 +211,8 @@
         <a href="/chartDisplay">图表展示</a>
     </div>
     <div id="body">
-        <svg width="1128" height="500" viewBox="0 0 1128 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+        
+        <svg id="line" width="1128" height="500" viewBox="0 0 1128 453" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path class=tick d="M500 439.5L407 192.5" stroke="#98D696" stroke-width="4" />
             <path class=tick d="M408.5 195.5L101.5 233.5" stroke="#BB1919" stroke-width="4"/>
             <path class=tick d="M503 438L933 189.5" stroke="#EDD869" stroke-width="4"/>
@@ -191,25 +224,176 @@
             <ellipse cx="931.5" cy="191" rx="13.5" ry="13" fill="#546C28"/>
             <ellipse cx="1114.5" cy="271" rx="13.5" ry="13" fill="#546C28"/>
             <ellipse cx="13.5" cy="13" rx="13.5" ry="13" fill="#546C28"/>
-            <image href="{% static 'images/giraffe.png' %}" x="70" y="110" />
-            <image href="{% static 'images/cow.png' %}" x="320" y="200" />
-            <image href="{% static 'images/crow.png' %}" x="474" y="320" />
-            <image href="{% static 'images/penguin.png' %}" x="830" y="100" />
-            <image href="{% static 'images/rattlesnake.png' %}" x="1000" y="250" />
-            <image href="{% static 'images/sheep.png' %}" x="15" y="-30" /> 
-            </svg>
-            <div class="card">
+            <image onclick="appear(2)" href="{% static 'images/giraffe.png' %}" x="70" y="110" />
+            <image onclick="appear(3)" href="{% static 'images/cow.png' %}" x="320" y="200" />
+            <image onclick="appear(4)" href="{% static 'images/crow.png' %}" x="474" y="320" />
+            <image onclick="appear(5)" href="{% static 'images/penguin.png' %}" x="830" y="100" />
+            <image onclick="appear(6)" href="{% static 'images/rattlesnake.png' %}" x="1000" y="250" />
+            <image onclick="appear(1)" href="{% static 'images/sheep.png' %}" x="15" y="-30" /> 
+        </svg>
+        <div class="card">
+                <svg onclick="cancel(1)"width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.706 20C39.706 30.4934 31.1994 39 20.706 39C10.2125 39 1.70595 30.4934 1.70595 20C1.70595 9.50659 10.2125 1 20.706 1C31.1994 1 39.706 9.50659 39.706 20Z" stroke="black" stroke-width="2"/>
+                    <path d="M11 11L30 30" stroke="black"/>
+                    <path d="M29.9531 10.9533L11.047 30.0467" stroke="black"/>
+                    </svg>
+                    
                 <div class="text">
-                    <p>名字</p>
-                    <p>介绍</p>
+                    <p>绵羊</p>
+                    <p>绵羊（学名：Ovis aries）亦称为家羊或白羊，属哺乳纲偶蹄目牛科羊亚科，是一种四足反刍哺乳动物，也是世界上数量最多的羊种，共计超过十亿。
+
+                        大部分人类居住的地方都进行过牧羊，这也是许多文明的基本要素。现在为澳洲、新西兰、南美洲中部及南部，以及不列颠群岛的重要产业之一。</p>
                 </div>
                 <div class="photo">
+                    <img src="static/images/sheep-de.jpg"> 
                 </div>
-                <div class="audio">
+                <div class="audio" >
+                    <audio class="myAudio">
+                    <source  src="https://www.google.com/logos/fnbx/animal_sounds/sheep.mp3" type="audio/mpeg">
+                    </audio>
+                    <button onclick="playAudio(1)">动物的声音</button>
                 </div>
                 <div class="audio_graph">
+                    <img src="static/audios_imgsheep.png" alt="Waveform Image">
                 </div>
-            </div>
-            <div class="button">继续探索</div>
+        </div>
+        <div class="card">
+                <svg onclick="cancel(2)" width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.706 20C39.706 30.4934 31.1994 39 20.706 39C10.2125 39 1.70595 30.4934 1.70595 20C1.70595 9.50659 10.2125 1 20.706 1C31.1994 1 39.706 9.50659 39.706 20Z" stroke="black" stroke-width="2"/>
+                    <path d="M11 11L30 30" stroke="black"/>
+                    <path d="M29.9531 10.9533L11.047 30.0467" stroke="black"/>
+                    </svg>
+                <div class="text">
+                    <p>长颈鹿</p>
+                    <p>长颈鹿 （学名：Giraffa），又称麒麟鹿，是哺乳动物偶蹄目下一个属，栖居于非洲，是世界上最高的哺乳动物。通常认为，该属目前仅由一个物种组成，仅存的努比亚长颈鹿（Giraffa camelopardalis）为该物种的模式种，为濒危野生动植物种国际贸易公约附录II所列的保护动物。</p>
+                </div>
+                <div class="photo">
+                    <img src="static/images/giraffe-de.jpg"> 
+                </div>
+                <div class="audio">
+                    <audio class="myAudio">
+                        <source  src="https://www.google.com/logos/fnbx/animal_sounds/giraffe.mp3" type="audio/mpeg">
+                        </audio>
+                        <button onclick="playAudio(2)">动物的声音</button>
+                </div>
+                <div class="audio_graph">
+                    <img src="static/audios_imggiraffe.png"  alt="Waveform Image">
+                </div>
+        </div>
+        <div class="card">
+                <svg onclick="cancel(3)" width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.706 20C39.706 30.4934 31.1994 39 20.706 39C10.2125 39 1.70595 30.4934 1.70595 20C1.70595 9.50659 10.2125 1 20.706 1C31.1994 1 39.706 9.50659 39.706 20Z" stroke="black" stroke-width="2"/>
+                    <path d="M11 11L30 30" stroke="black"/>
+                    <path d="M29.9531 10.9533L11.047 30.0467" stroke="black"/>
+                    </svg>
+                <div class="text">
+                    <p>奶牛</p>
+                    <p>奶牛是偶蹄目牛科牛属的哺乳动物，奶牛体型高大，结构匀称，皮薄、脂肪少，被毛细短，毛色往往呈明显的黑白色或者黄色。奶牛的乳房大而丰满，一般有四只乳头，两列均匀，多余的副乳头短小，一般都不出奶，后天会自然菱缩。</p>
+                </div>
+                <div class="photo">
+                    <img src="static/images/cow-de.jpg"> 
+                </div>
+                <div class="audio">
+                    <audio class="myAudio">
+                        <source  src="https://www.google.com/logos/fnbx/animal_sounds/cow.mp3" type="audio/mpeg">
+                        </audio>
+                        <button onclick="playAudio(3)">动物的声音</button>
+                </div>
+                <div class="audio_graph">
+                    <img src="static/audios_imgcow.png"  alt="Waveform Image">
+                </div>
+        </div>
+        <div class="card">
+                <svg onclick="cancel(4)" width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.706 20C39.706 30.4934 31.1994 39 20.706 39C10.2125 39 1.70595 30.4934 1.70595 20C1.70595 9.50659 10.2125 1 20.706 1C31.1994 1 39.706 9.50659 39.706 20Z" stroke="black" stroke-width="2"/>
+                    <path d="M11 11L30 30" stroke="black"/>
+                    <path d="M29.9531 10.9533L11.047 30.0467" stroke="black"/>
+                    </svg>
+                <div class="text">
+                    <p>乌鸦</p>
+                    <p>介乌鸦是鸦属（学名：Corvus、英文：Crow）鸟类的通称，属于雀形目鸦科，是很多城市非常常见的鸟。乌鸦是最聪明的动物之一，能提前制定计划。被称为乌鸦的鸟可以指的多个物种，比如喙粗壮的大嘴乌鸦、喙较细的小嘴乌鸦、鼻区裸露的秃鼻乌鸦、在西方比较常见的渡鸦。</p>
+                </div>
+                <div class="photo">
+                    <img src="static/images/crow-de.jpg"> 
+                </div>
+                <div class="audio">
+                    <audio class="myAudio">
+                        <source  src="https://www.google.com/logos/fnbx/animal_sounds/crow.mp3" type="audio/mpeg">
+                        </audio>
+                        <button onclick="playAudio(4)">动物的声音</button>
+                </div>
+                <div class="audio_graph">
+                    <img src="static/audios_imgcrow.png"  alt="Waveform Image">
+                </div>
+        </div>
+        <div class="card">
+                <svg onclick="cancel(5)" width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.706 20C39.706 30.4934 31.1994 39 20.706 39C10.2125 39 1.70595 30.4934 1.70595 20C1.70595 9.50659 10.2125 1 20.706 1C31.1994 1 39.706 9.50659 39.706 20Z" stroke="black" stroke-width="2"/>
+                    <path d="M11 11L30 30" stroke="black"/>
+                    <path d="M29.9531 10.9533L11.047 30.0467" stroke="black"/>
+                    </svg>
+                <div class="text">
+                    <p>企鹅</p>
+                    <p>企鹅属于企鹅目（学名：Sphenisciformes）企鹅科（Spheniscidae），是一种不会飞的鸟类。
+
+                        主要生活在南半球，目前已知全世界的企鹅共有19种，另有两种已灭绝。多数分布在南极地区，而其中环企鹅属的秘鲁企鹅、南美企鹅与南非企鹅分布在纬度较低的温带地区，至于加岛企鹅的分布则更接近赤道；完全生活在极地的只有帝企鹅及阿德利企鹅两种。</p>
+                </div>
+                <div class="photo">
+                    <img src="static/images/Penguin-de.jpg"> 
+                </div>
+                <div class="audio">
+                    <audio class="myAudio">
+                        <source  src="https://www.google.com/logos/fnbx/animal_sounds/penguin.mp3" type="audio/mpeg">
+                        </audio>
+                        <button onclick="playAudio(5)">动物的声音</button>
+                </div>
+                <div class="audio_graph">
+                    <img src="static/audios_imgpenguin.png"  alt="Waveform Image">
+                </div>
+        </div>
+        <div class="card">
+                <svg onclick="cancel(6)" width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.706 20C39.706 30.4934 31.1994 39 20.706 39C10.2125 39 1.70595 30.4934 1.70595 20C1.70595 9.50659 10.2125 1 20.706 1C31.1994 1 39.706 9.50659 39.706 20Z" stroke="black" stroke-width="2"/>
+                    <path d="M11 11L30 30" stroke="black"/>
+                    <path d="M29.9531 10.9533L11.047 30.0467" stroke="black"/>
+                    </svg>
+                <div class="text">
+                    <p>响尾蛇</p>
+                    <p>响尾蛇属于响尾蛇属（学名：Crotalus）及侏儒响尾蛇属（学名：Sistrurus），是一种有毒的蛇。它们都属于蝮亚科这类有毒蛇的分类之下。现存已知约有50种响尾蛇及多个亚种。顾名思义它们的尾巴末端上有响板，当它们受到威胁时会发出警号。另一的侏儒响尾蛇属学名是来自拉丁化希腊文“发出响声的尾巴”，与古埃及乐器叉铃有共同的字根。
+                    </p>
+                </div>
+                <div class="photo">
+                    <img src="static/images/rattlesnake-de.jpg"> 
+                </div>
+                <div class="audio">
+                    <audio class="myAudio">
+                        <source  src="https://www.google.com/logos/fnbx/animal_sounds/rattlesnake.mp3" type="audio/mpeg">
+                        </audio>
+                        <button onclick="playAudio(6)">动物的声音</button>
+                </div>
+                <div class="audio_graph">
+                    <img src="static/audios_imgrattlesnake.png"  alt="Waveform Image">
+                </div>
+        </div>
+        <div class="button">继续探索</div>
     </div>
+    <script>
+        function appear(e) {
+            let elements=document.getElementsByClassName('card');
+            
+            elements[e-1].style.display="block";
+
+        }
+        function cancel(e){
+            let elements=document.getElementsByClassName('card');
+            elements[e-1].style.display="none";
+        }
+        function playAudio(e) {
+            var audio = document.getElementsByClassName("myAudio");
+            audio[e-1].play();
+            /*let photo=document.getElementsByClassName("audio_graph");
+            photo[e-1].style.display="block";*/
+            
+        }
+    </script>
 </body>

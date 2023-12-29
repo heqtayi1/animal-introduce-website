@@ -10,8 +10,54 @@ import matplotlib.pyplot as plt
 def homepage(request):
 
     return render(request, 'homepage.html')
+def animal_audiograph_creat():
+    #创建一段连续的音频波形图
+    import requests
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import base64
+    from io import BytesIO
+    str=["sheep","giraffe","cow","crow","penguin","rattlesnake"]
+    #img_str = []
+    for i in str:
+        url = "https://www.google.com/logos/fnbx/animal_sounds/"+i+".mp3"
+        des_url= os.path.join(STATICFILES_DIRS[0], 'audios_img')
+        response = requests.get(url)
+        audio_content = response.content
+
+        # 确保 audio_content 的长度是 np.int16 元素大小的倍数
+        remainder = len(audio_content) % 2  # np.int16 是 2 字节
+        if remainder:
+            audio_content += b'\x00'  # 添加一个空字节来使其成为 2 的倍数
+    
+        audio_data = np.frombuffer(audio_content, dtype=np.int16)
+
+        # 创建一个时间向量，用于绘制波形图
+        time = np.linspace(0., len(audio_data) / 44100., len(audio_data))
+        plt.figure(figsize=(10,4))
+        plt.plot(time, audio_data, color='blue')
+        plt.xlabel('Time (seconds)')
+        plt.ylabel('Amplitude')
+        plt.title('Waveform of Audio')
+        plt.grid(True)
+        #
+        #buffer = BytesIO()
+        #print(des_url+i)
+        plt.savefig(des_url+i + '.png',format='png')
+        #buffer.seek(0)
+        # 将图像数据转换为Base64编码的字符串
+        #img_str.append(base64.b64encode(buffer.read()).decode('utf-8'))
+        plt.close()
+    
+    
 
 def animal_page(request):
+    str=["sheep","giraffe","cow","crow","penguin","rattlesnake"]
+    for i in str:
+        des_url= os.path.join(STATICFILES_DIRS[0], 'audios_img')
+        if not os.path.exists(des_url+i+'.png'):
+            animal_audiograph_creat()
+        
     return render(request,'animal.html')
 
 def image_list_page(request):
