@@ -33,6 +33,6 @@ urlpatterns = [
     path('Recognize', homepage_views.Recognize),
     path('chartDisplay', homepage_views.chartDisplay),
     path('animal',homepage_views.animal_page),
-    #path('sheep-info',),
+    path('sound',homepage_views.sound_page),
 ]
 

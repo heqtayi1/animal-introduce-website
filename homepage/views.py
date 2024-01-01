@@ -59,6 +59,8 @@ def animal_page(request):
             animal_audiograph_creat()
         
     return render(request,'animal.html')
+def sound_page(request):
+    return render(request,'sound.html')
 
 def image_list_page(request):
     image_path = os.path.join(STATICFILES_DIRS[0], 'images')
