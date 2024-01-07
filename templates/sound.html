@@ -45,6 +45,16 @@
                 color:rgb(243,246,226);
                 background-color:rgb(138,147,82);
              }
+             a{
+                color:rgb(138,147,82);
+                text-decoration:none;
+                line-height:54px;
+                background-color:rgb(243,246,226);
+            }
+            a:hover{
+                color:rgb(243,246,226);
+                background-color:rgb(138,147,82);
+            }
              .video_grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr; 
@@ -96,12 +106,11 @@
 <body>
     <div class="nav">
         <span>自然的声音</span>
-        <a href="/imageList">图像</a>
-        <a href="/videoList">视频</a>
-        <a href="/upload">上传</a>
-        <a href="/imageProcessing">图像处理</a>
-        <a href="/imageRecognition">图像识别</a>
-        <a href="/chartDisplay">图表展示</a>
+        <a href=" ">主页</a>
+    <a href="/animal">动物</a>
+    <a href="/sound">自然声音</a>
+    <a href="/upload">音频分析</a>
+    <a href="/image_rec">图像分析</a>
     </div>
     <div class='body'>
         <div class='video_grid'>
@@ -116,6 +125,9 @@
                     <p class="subtitle">蝉声沉落，蛙声升起</p>
                     <p class="subtitle">一池的红莲如红焰，在雨中</p>
                 </div>
+                <audio class="myAudio">
+                    <source  src="static\audio\rain.wav" type="audio/mpeg">
+                </audio>
             </div>
             <div class="video_con">
                 <video class='video' >
@@ -126,6 +138,9 @@
                     <p class="title">风</p>
                     <p class="subtitle">我们转出马路，在对面，店铺的招牌在风中晃动。它们有些已经吹毁，有些还半吊在空中，在强大的风力中不住摆动，破碎的白色胶片散了一地。<p>
                 </div>
+                <audio class="myAudio">
+                    <source  src="static\audio\wind.wav" type="audio/mpeg">
+                </audio>
             </div>
             <div class="video_con" >
                 <video class='video'>
@@ -136,6 +151,9 @@
                     <p class="title">海</p>
                     <p class="subtitle">掘墓人，是你要跟我谈话吗？一头抹香鲸渐渐地从海底升起，把头露出水面，观看航行在这片孤独海域的船只。好奇心和宇宙一同诞生。<p>
                 </div>
+                <audio class="myAudio">
+                    <source  src="static\audio\sea.wav" type="audio/mpeg">
+                </audio>
             </div>
             <div class="video_con" >
                 <video class='video'>
@@ -146,10 +164,13 @@
                     <p class="title">瀑布</p>
                     <p class="subtitle">河流或溪水经过河床纵断面的显着陡坡或悬崖处时，成垂直或近乎垂直地倾泻而下的水流景象。<p>
                 </div>
+                <audio class="myAudio">
+                    <source  src="static\audio\waterfall.wav" type="audio/mpeg">
+                </audio>
             </div>
             
         </div>
-        <div class="button">识别自己的音频</div>
+        <div class="button">分析自己的音频</div>
 <script>
     /*function playVideo(e){
         let videoElement=document.getElementsByClassName("video");
@@ -167,18 +188,21 @@
         videoContainers.forEach((container, index) => {
             // 获取每个容器内的视频和封面元素
             const video = container.querySelector(".video");
+            const audio = container.querySelector(".myAudio");
             const cover = container.querySelector(".cover");
     
             // 当鼠标悬停在封面上时并点击
             cover.addEventListener("click", function() {
                 // 播放视频
-                video.play()
+                video.play();
+                audio.play();
             });
     
             // 当鼠标离开容器时
             container.addEventListener("mouseleave", function() {
                 // 暂停视频
                 video.pause();
+                audio.pause();
             });
         });
     });
@@ -187,7 +211,7 @@
     // 添加点击事件监听器
     divElement.addEventListener("click", function() {
     // 跳转到指定的URL
-    window.location.href = "/sound"; 
+    window.location.href = "/upload"; 
 });
 </script>
 </body>

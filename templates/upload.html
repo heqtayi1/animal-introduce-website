@@ -3,28 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>upload</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;        }
+        body{
+            position:relative;
+            height:100%;
+            
+
+        } 
+        .nav{
+            height:54px;
+            width:100%;
+            background-color:rgba(217,217,217,57%);
+            position: relative;
+            }
+        a{
+            float:right;
+        }
+        .nav span{
+            font-size: 60px;
+        }
+        .button{
+            width:156px;
+            height:38px;
+            margin:40px;
+            background-color:rgb(243,246,226);
+            border-radius: 25px;
+            line-height: 38px;
+            text-align: center;
+            font-size:16px;
+            color:rgb(138,147,82);
+            position:absolute;
+            right:10px;
+            bottom:2px;
+            }
+        .button:hover{
+            color:rgb(243,246,226);
+            background-color:rgb(138,147,82);
+         }
+        form{
+            padding:30px;
+        }
+        a{
+            color:rgb(138,147,82);
+            text-decoration:none;
+            line-height:54px;
+            background-color:rgb(243,246,226);
+        }
+        a:hover{
+            color:rgb(243,246,226);
+            background-color:rgb(138,147,82);
+        }
+    </style>
 </head>
 <body>
-    <h2>Upload Image</h2>
-    <form action="upload_image" method="post" enctype="multipart/form-data">
+    <div class="nav">
+        <span>音频分析</span>
+    <a href=" ">主页</a>
+    <a href="/animal">动物</a>
+    <a href="/sound">自然声音</a>
+    <a href="/upload">音频分析</a>
+    <a href="/image_rec">图像分析</a>
+    </div>
+    {% comment %} <h2>音频分析</h2> {% endcomment %}
+    <form action="process_audio" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" name="image" accept="image/*">
-        <button type="submit">上传图像</button>
+        <input type="file" name="audio" accept="audio/*">
+        <button type="submit"> 确认上传 </button>
 
         {% if upload_success %}
-            <p style="color: red;">{{ image_name }} 上传成功！并存放在static/images目录下</p>
+            <p style="color: red;">{{ audio_name }} 上传成功！</p>
         {% endif %}
     </form>
+    
+    {% if waveform_url %}
+    <h3>波形图</h3>
+    <img src="{{ waveform_url }}" alt="Waveform">
+    {% endif %}
 
-    <h2>Upload video</h2>
-    <form action="upload_video" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="video" accept="video/*">
-        <button type="submit">上传视频</button>
-
-        {% if upload_success1 %}
-            <p style="color: red;">{{ video_name }} 上传成功！并存放在static/videos目录下。</p>
-        {% endif %}
-    </form>
+    {% if spectrogram_url %}
+    <h3>宽带频谱图</h3>
+    <img src="{{ spectrogram_url }}" alt="Spectrogram">
+    {% endif %}
+    <div class="button">图像分析 </div>
+   <script>
+    var divElement = document.getElementsByClassName("button")[0];
+        
+    // 添加点击事件监听器
+    divElement.addEventListener("click", function() {
+    // 跳转到指定的URL
+    window.location.href = "/image_rec"; 
+});
+   </script>
 </body>
 </html>

@@ -20,19 +20,12 @@ from homepage import views as homepage_views
 
 urlpatterns = [
     path('', homepage_views.homepage),   #默认登录界面
-    path('imageList', homepage_views.image_list_page),
-    path('videoList', homepage_views.video_list_page),
     path('upload', homepage_views.upload),
-    path('upload_image', homepage_views.upload_image),
-    path('upload_video', homepage_views.upload_video),
-    path('search_image', homepage_views.search_image),
-    path('imageProcessing', homepage_views.imageProcessing),
-    path('load_image', homepage_views.load_image),
-    path('grayscale_image', homepage_views.grayscale_image),
-    path('imageRecognition', homepage_views.imageRecognition),
-    path('Recognize', homepage_views.Recognize),
-    path('chartDisplay', homepage_views.chartDisplay),
     path('animal',homepage_views.animal_page),
     path('sound',homepage_views.sound_page),
+    path('process_audio',homepage_views.process_audio),
+    path('image_rec',homepage_views.image_rec),
+    path('image_analyses',homepage_views.image_analyses)
+    
 ]
 

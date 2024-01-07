@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;        }
+
+        body{
+            position:relative;
+            height:100%;
+        } 
+        .nav{
+            height:54px;
+            width:100%;
+            background-color:rgba(217,217,217,57%);
+            position: relative;
+            }
+        a{
+            float:right;
+        }
+        .nav span{
+            font-size: 60px;
+        }
+        .button{
+            width:156px;
+            height:38px;
+            margin:40px;
+            background-color:rgb(243,246,226);
+            border-radius: 25px;
+            line-height: 38px;
+            text-align: center;
+            font-size:16px;
+            color:rgb(138,147,82);
+            position:absolute;
+            right:10px;
+            bottom:2px;
+            }
+        .button:hover{
+            color:rgb(243,246,226);
+            background-color:rgb(138,147,82);
+         }
+        form{
+            padding:30px;
+        }
+        a{
+            color:rgb(138,147,82);
+            text-decoration:none;
+            line-height:54px;
+            background-color:rgb(243,246,226);
+            
+        }
+        a:hover{
+            color:rgb(243,246,226);
+            background-color:rgb(138,147,82);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+    <span>图像分析</span>
+    <a href=" ">主页</a>
+    <a href="/animal">动物</a>
+    <a href="/sound">自然声音</a>
+    <a href="/upload">音频分析</a>
+    <a href="/image_rec">图像分析</a>
+    </div>
+    
+    <form action="image_analyses" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" accept="images/*">
+        <button type="submit"> 确认上传 </button>
+
+        {% if upload_success %}
+            <p style="color: red;">{{ img_name }} 上传成功！</p>
+        {% endif %}
+    </form>
+    {% if de_hurl %}
+    <h3>灰度直方图</h3>
+    <img src="{{ de_hurl }}" alt="histgram">
+    {% endif %}
+
+    {% if de_hurl %}
+    <h3>均衡化结果</h3>
+    <img src="{{ de_eurl }}" alt="equalizehist">
+    {% endif %}
+    
+
+</body>
+</html>
